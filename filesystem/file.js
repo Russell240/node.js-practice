@@ -24,10 +24,38 @@ fs.writeFile('./text2.txt', "Hello Again ", ()  =>
 
 } );
 
-// directories 
+// directories
+if(!fs.existsSync('./assets')) {
+
+
 fs.mkdir('./assets' ,(err) => {
     if(err){
         console.log(err);
     }
     console.log("Folder Created "); 
 });
+}
+
+if(fs.existsSync('./assets')) {
+  console.log("File already exists")
+}
+else {
+    fs.rmdir('./assets',(err) => {
+        if(err) {
+            console.log(err);
+        };
+        console.log("Folder Deleted"); 
+    } )
+}
+
+// deleting files 
+
+if(fs.existsSync('./deleteme.txt' )){
+    fs.unlink('./deleteme.txt', (err) => {
+        if(err){
+            console.log(err);
+        }
+        console.log('file was deleted ');
+    } );
+
+}
