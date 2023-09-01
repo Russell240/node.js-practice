@@ -1,9 +1,14 @@
 const fs = require('fs');
 
-const streamread = fs.createReadStream('./blog1.txt');
+const readStream = fs.createReadStream('./blog1.txt', {encoding:'utf-8'});
+const writeStream = fs.createWriteStream('./blog3.txt');
 
-fs.ReadStream.on('data', (chunk ) => {
+readStream.on('data', (chunk ) => {
     console.log(' ---  NEW CHUNK  ----- ');
-    console.lon(chunk)
+    console.log(chunk);
+    writeStream.write('\n NEW  CHUNK \n');
+    writeStream.write(chunk);
 
-});
+});  
+
+//readStream.pipe(writeStream);

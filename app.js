@@ -16,5 +16,4 @@ console.log(message);
 let num= 15;
 let text= num.toString
 console.log(num)
-console.log(text)
-;
+console.log(text);
