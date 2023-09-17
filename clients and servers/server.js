@@ -2,11 +2,22 @@ const http = require('http');
 const fs = require('fs');
 
 const server = http.createServer((req, res) => {
+    const num = _.random(0, 20);
+    console.log(num);
+    
     console.log(req.url, req.method );
     // set header type 
-    res.setHeader('Content-Type','text/plain' );
+    res.setHeader('Content-Type','text/html' );
+    
+    let path='/.views/';
+        switch(req.url){
+            case'/': 
+            path +='index.html';
+            res.statusCode=200; 
+            break;  
+        }
     // send a html file 
-    fs.readFile('./views/index.html', (err, data) => {
+    fs.readFile(path, (err, data) => {
         if(err){
             console.log(err); 
             res.end();

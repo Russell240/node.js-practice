@@ -1,5 +1,5 @@
 // reading to files 
-const { error } = require('console');
+require('console');
 const fs= require('fs');
 
 fs.readFile('./text.txt','utf8', (err ,data) => {
