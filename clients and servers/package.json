@@ -8,5 +8,9 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.21"
+  }
 }
