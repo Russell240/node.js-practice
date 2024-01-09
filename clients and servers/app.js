@@ -13,16 +13,21 @@ app.get('/about');
 
 app.get('/', (req, res) => {
    // res.send('<p> home page </p>  ')
-    res.render('index');
+    res.render('index' ,{title: 'Home' } );
 
 });
 
 app.get('/about',(req, res) => {
-    res.render('about');
+    res.render('about', {title: 'Home' });
+});
+
+app.get('/blogs/create', (req, res) => {
+
+res.render('create',  {title: 'Create  a new blog ' } );
 });
 
 // error 404 
 
 app.use((req, res) => {
-    res.render('404')
+    res.render('404',   {title: 'error 404 ' } ); 
 });
