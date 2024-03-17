@@ -1,19 +1,23 @@
 const express= require('express'); 
 
-const app = express();
+var app = express();
 //listen for request 
 
 // register view engine 
 app.set('view engine', 'ejs')
-app.set('views', )
+//app.set('views', )
 
 app.listen(3000); 
 
-app.get('/about');
+
 
 app.get('/', (req, res) => {
-   // res.send('<p> home page </p>  ')
-    res.render('index' ,{title: 'Home' } );
+   const blogs =[
+    { title:'Yoshi finds eggs', snippet:'Lorem Ipsum   dolor sit amet, consectetur' },  
+    {title:'Mario finds eggs, ' , snippet:'Lorem Ipsum  dolor sit amet, consectetur'}, 
+    {title:'How to defeat bowser'  , snippet:'Lorem Ipsum  dolor sit amet, consectetur'}
+   ]; 
+    res.render('index');
 
 });
 
