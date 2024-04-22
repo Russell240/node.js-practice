@@ -1,23 +1,29 @@
 const express= require('express'); 
 const morgan= require('morgan');
 const mongoose= require('mongoose');
+const blog=  require('./models ');
 
 var app = express();
 const dbURI= 'mongodb+srv://netninja:!test1234@nodetuts.itn9mzv.mongodb.net/?retryWrites=true&w=majority&appName=nodetuts'; 
 mongoose.connect(dbURI, {useNewUrlParser:true})
 .then((result) => console.log('Connected to the Database') )
 .catch((err) => console.log(err)); 
-//listen for request 
 
 // register view engine 
 app.set('view engine', 'ejs')
-//app.set('views', )
 
-app.listen(3000); 
+
+
 
 // middleware and static files 
 app.use(express.static('public')); 
 app.use(morgan('dev'));
+
+// mongoose and mongo sandbox routes 
+
+app.get('/add-blog', (  req, res ) => {
+    const blog= new Blog( ); 
+}  ); 
 
 app.get('/', (req, res) => {
    const blogs =[
