@@ -3,6 +3,7 @@ const morgan= require('morgan');
 const mongoose= require('mongoose');
 const Blog=  require('./models/blog');
 
+// connection to database  
 var app = express();  
 const dbURI= 'mongodb+srv://netninja:!test1234@nodetuts.itn9mzv.mongodb.net/?retryWrites=true&w=majority&appName=nodetuts'; 
 mongoose.connect(dbURI)
@@ -19,30 +20,40 @@ app.use(morgan('dev'));
 
 // mongoose and mongo sandbox routes 
 
-app.get('/add-blog', (  req, res ) => {
+app.get('/add-blog', ( req, res) => {
     const blog= new Blog({
-        title:'new blog', 
-        snippet: 'about my new blog', 
-        body:'more about my new blog ' 
+        title:'new blog2 ', 
+        snippet: 'about my new blog2 ', 
+        body:'more about my new blog2 ' 
     })
 
     blog.save()
-        .then((result) => {
+        .then(result => {
            res.send(result);        
         })
         .catch(err => {
             console.log(err);
           });
-}  ); 
+}); 
 
 app.get('/all-blogs',  (req, res) => {
     Blog.find()
-     .then((result =>  {
-        res.rend(result)
+     .then(result =>  {
+        res.send(result)
      })
-     .catch((err) => {
+     .catch(err => {
         console.log(err);
-     }))
+     });
+});
+
+app.get('/single-blog', (req, res )=> {
+    Blog.findById('665489f1ec6a7469218f1e8b')
+        .then(result => {
+            res.send(result);
+        })
+        .catch(err => {
+            console.log(err);  
+        })
 } )
 
 app.get('/', (req, res) => {
@@ -58,6 +69,16 @@ app.get('/', (req, res) => {
 
 app.get('/about',(req, res) => {
     res.render('about', {title: 'Home' });
+});
+
+app.get('/blogs', (req, res) => {
+    Blog.find().sort({createdAt: -1})
+        .then((result) => {
+            res.render('index',{ title : 'All Blogs ', blogs:result} )
+        })
+        .catch((err) => {
+            console.log(err);  
+        })
 });
 
 app.get('/blogs/create', (req, res) => {
