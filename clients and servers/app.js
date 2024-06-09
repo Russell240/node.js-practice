@@ -54,8 +54,8 @@ app.post('/blogs', (req, res ) => {
     })
     .catch((err) =>  {
         console.log(err); 
-    });
-})
+    })
+
 
 app.get('/blogs/:id ', (req, res ) => 
     {
@@ -70,6 +70,8 @@ app.get('/blogs/:id ', (req, res ) =>
             });
     });
 
+
+})
 app.get('/blogs/create', (req, res) => {
 
 res.render('create',  {title: 'Create  a new blog ' } );
