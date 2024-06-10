@@ -5,26 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome",
-            "request": "launch",
+            "name": "Attach to Chrome",
+            "port": 3030,
+            "request": "attach",
             "type": "chrome",
-            "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\app.js",
-            },
-        {
-            "type": "chrome",
-            "name": "http://localhost:8080/",
-            "request": "launch",
-            "url": "http://localhost:8080/"
         }
+
     ]
 }

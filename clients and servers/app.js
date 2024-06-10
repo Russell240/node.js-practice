@@ -21,13 +21,8 @@ app.use(morgan('dev'));
 
 
 app.get('/', (req, res) => {
-   const blogs =[
-    { title:'Yoshi finds eggs', snippet:'Lorem Ipsum   dolor sit amet, consectetur' },  
-    {title:'Mario finds eggs, ' , snippet:'Lorem Ipsum  dolor sit amet, consectetur'}, 
-    {title:'How to defeat bowser'  , snippet:'Lorem Ipsum  dolor sit amet, consectetur'}, 
-    {title:'How to find more eggs, ', snippet:' Lorem Ipsum  dolor sit amet, consectetur'}
-   ]; 
-    res.render('index', {title:'Home', blogs});
+   
+    res.redirect('/blogs');
 
 });
 
@@ -54,24 +49,24 @@ app.post('/blogs', (req, res ) => {
     })
     .catch((err) =>  {
         console.log(err); 
-    })
+    }); 
+
+});  
 
 
-app.get('/blogs/:id ', (req, res ) => 
-    {
+app.get('/blogs/:id ', (req, res) =>  {
         const id = req.params.id;
-        console.log(id); 
+        //console.log(id); 
         Blog.findById(id)
             .then(result => {
                 res.render('details ', {blog: result, title: 'Blog details ' }); 
             })
-            .catch(err=>  {
+            .catch(err  => {
                 console.log(err); 
             });
     });
 
 
-})
 app.get('/blogs/create', (req, res) => {
 
 res.render('create',  {title: 'Create  a new blog ' } );
