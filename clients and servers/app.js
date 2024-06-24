@@ -18,6 +18,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('public')); 
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+  });
 
 
 app.get('/', (req, res) => {
@@ -56,7 +60,7 @@ app.post('/blogs', (req, res ) => {
 
 app.get('/blogs/:id ', (req, res) =>  {
         const id = req.params.id;
-        //console.log(id); 
+        console.log(id); 
         Blog.findById(id)
             .then(result => {
                 res.render('details ', {blog: result, title: 'Blog details ' }); 

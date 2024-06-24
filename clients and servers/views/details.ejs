@@ -7,8 +7,10 @@
       <h2><%= blog.title %></h2>
     <div class="content">
       <p><%= blog.body %></p>
+      <a class="delete" data-doc="<%= blog._id %>">delete</a>
     </div>
-   
+    
+
   </div>
 
   <%- include("./partials/footer.ejs") %>
