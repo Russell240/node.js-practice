@@ -4,15 +4,13 @@
 <body>
   <%- include("./partials/nav.ejs") %>
   <div class="details content">
-      <h2><%= blog.title %></h2>
+      <h2><%= blog._id.title %></h2>
     <div class="content">
-      <p><%= blog.body %></p>
+      <p><%= blog._id.body %></p>
+     </div> 
       <a class="delete" data-doc="<%= blog._id %>">delete</a>
-    </div>
+   </div>
     
-
-  </div>
-
   <%- include("./partials/footer.ejs") %>
 </body>
 </html>

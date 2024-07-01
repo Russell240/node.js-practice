@@ -63,7 +63,7 @@ app.get('/blogs/:id ', (req, res) =>  {
         console.log(id); 
         Blog.findById(id)
             .then(result => {
-                res.render('details ', {blog: result, title: 'Blog details ' }); 
+                res.render('details', { blog: result, title: 'Blog details ',  }); 
             })
             .catch(err  => {
                 console.log(err); 
