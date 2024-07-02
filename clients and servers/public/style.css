@@ -99,3 +99,8 @@
       font-size: 1.2em;
       cursor: pointer;
     }
+
+    .single {
+
+      align-items:center ;
+    }

@@ -2,6 +2,7 @@ const express= require('express');
 const morgan= require('morgan');
 const mongoose= require('mongoose');
 const Blog=  require('./models/blog');
+const path = require('path') 
 
 // connection to database  
 var app = express();  
@@ -11,7 +12,8 @@ mongoose.connect(dbURI)
 .catch((err) => console.log(err));  
 
 // register view engine 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs'); 
+app.set('views', path.join('views'), );
 
 
 // middleware and static files 
@@ -30,7 +32,8 @@ app.get('/', (req, res) => {
 
 });
 
-app.get('/about',(req, res) => {
+app.get('/about',(req, res) => 
+    {
     res.render('about', {title: 'Home' });
 });
 
@@ -61,13 +64,18 @@ app.post('/blogs', (req, res ) => {
 app.get('/blogs/:id ', (req, res) =>  {
         const id = req.params.id;
         console.log(id); 
-        Blog.findById(id)
-            .then(result => {
-                res.render('details', { blog: result, title: 'Blog details ',  }); 
-            })
+        Blog.findById(req.params.id, function findBlog (err,  blog)
+        {
+
+                if (err) throw err; 
+                else return res.render('details',{ blog: result}); 
+        } ).toArray();
+         /*   .then(result => {
+                res.render('details',{ blog: result}); 
+           })
             .catch(err  => {
                 console.log(err); 
-            });
+            });  */
     });
 
 
